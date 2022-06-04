@@ -1,18 +1,19 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
-// Ma tr?n gi? gi� tr? cho c�c b?ng
+// Ma trận giữ giá trị cho các bảng
 int Allocation[10][3], Need[10][3], Max[10][3], Available[10][3];
-// p S? lu?ng Process 
-// Work luu gi� tr? ban d?u d? cho d?ng th?i gi? l?i gi� tr? hi?n t?i
+// p Số lượng Process 
+// Work lưu giá trị ban đầu đề cho đồng thời giữ lại giá trị hiện tại
 int p, Work[3], IniWork[3];
-// Executed d? check ki?m tra Process n�o d� th?c thi 
-// Come d? ki?m tra Process c� x?y ra deadlock hay kh�ng
+// Executed để check kiểm tra Process nào đã thực thi 
+// Come để kiểm tra Process có xảy ra deadlock hay không
 bool Executed[10], Come;
 
 void ResetRow() {
-    // G�n l?i c�c gi� tr? m?c d?nh ban d?u cho c�c bi?n
-    // �? c� th? ch?y l?i h�m t�nh
+    // Gán lại các giá trị mặc định ban đầu cho các biến
+    // Để có thể chạy lại hàm tính
 	Come = false;
 	for (int i = 0; i < 10; ++i)    {
 		Executed[i] = false;
@@ -36,23 +37,23 @@ void Banker() {
 	for (int i = 0; i < p; ++i)	{
 		for (int j = 0; j < p; ++j) {
 			while (Executed[j] && j < p - 1) {
-             // Tang bi?n di?m m?i khi process d� th?c thi
-             // j < p - 1 d? d?ng l?i khi j l?n hon p
+             // Tăng biến điếm mỗi khi process đã thực thi
+             // j < p - 1 để đừng lại khi j lớn hơn p
 				j++;
 			}
-            // T�m ki?m process th�ch ?ng d? Work c� th? c?p cho
-            // Ki?m tra Work => Need d? ti?n h�nh c?p cho ti?n tr�nh
+            // Tìm kiếm process thích ứng để Work có thể cấp cho
+            // Kiểm tra Work => Need để tiến hành cấp cho tiến trình
 			if (Need[j][0] <= Work[0] && 
 			    Need[j][1] <= Work[1] &&
 			    Need[j][2] <= Work[2]) {
-                // Ki?m tra Ti?n tr�nh d� th?c thi hay chua   
+                // Kiểm tra Tiến trình đã thực thi hay chưa   
 				if (!Executed[j]) {
 					Executed[j] = true;
 					Work[0] += Allocation[j][0];
 					Work[1] += Allocation[j][1];
 					Work[2] += Allocation[j][2];
-					// ��nh d?u come = true d? ti?p t?c th?c hi?n
-                    // N?u come kh�ng du?c d�nh d?u th� tru?ng h?p deadlock s? x?y ra 	
+					// Đánh dấu come = true để tiếp tục thực hiện
+                    // Nếu come không được đánh dấu thì trường hợp deadlock sẽ xảy ra 	
 					Come = true;
 					cout << "\nProcess P" << j+1;
 					cout << "\nWork: " << Work[0] << " " << Work[1] << " " << Work[2] << "\n";
@@ -60,13 +61,13 @@ void Banker() {
 				}
 			}
 		}
-        // N?u ch?y xong 1 v�ng i m� v?n kh�ng c� process n�o du?c th?c thi => Deadlock 		
+        // Nếu chạy xong 1 vòng i mà vẫn không có process nào được thực thi => Deadlock 		
 		if (!Come) {	
             system("color 4");
 			cout << "\n\t\t\tDead lock\n\n";
 			break;
 		} else {
-            // Reset l?i bi?n Come th�nh false d? ki?m tra process ti?p theo c� b? Deadlock hay kh�ng  
+            // Reset lại biến Come thành false để kiểm tra process tiếp theo có bị Deadlock hay không  
 			Come = false;
 		}
 		if (i == p - 1) {
@@ -96,7 +97,7 @@ void Banker() {
                 IniWork[0] -= R1;
                 IniWork[1] -= R2;
                 IniWork[2] -= R3;
-                // Reset l?i work v? gi� tr? ban d?u
+                // Reset lại work về giá trị ban đầu
                 Work[0] = IniWork[0];
                 Work[1] = IniWork[1];
                 Work[2] = IniWork[2];
@@ -111,7 +112,7 @@ void Banker() {
                 cin >> Max[pro-1][0] 
                     >> Max[pro-1][1] 
                     >> Max[pro-1][2];
-                // Reset l?i work v? gi� tr? ban d?u
+                // Reset lại work về giá trị ban đầu
                 Work[0] = IniWork[0];
                 Work[1] = IniWork[1];
                 Work[2] = IniWork[2];
@@ -126,7 +127,7 @@ void Banker() {
                 cin >> Allocation[pro-1][0] 
                     >> Allocation[pro-1][1] 
                     >> Allocation[pro-1][2];
-                // Reset l?i work v? gi� tr? ban d?u
+                // Reset lại work về giá trị ban đầu
                 Work[0] = IniWork[0];
                 Work[1] = IniWork[1];
                 Work[2] = IniWork[2];
@@ -137,7 +138,7 @@ void Banker() {
             case 4: {
                 cout << "\nNew Initial Available: ";
                 cin >> IniWork[0] >> IniWork[1] >> IniWork[2];
-                // Reset l?i work v? gi� tr? ban d?u
+                // Reset lại work về giá trị ban đầu
                 Work[0] = IniWork[0];
                 Work[1] = IniWork[1];
                 Work[2] = IniWork[2];
