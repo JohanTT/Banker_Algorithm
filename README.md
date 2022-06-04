@@ -1,6 +1,6 @@
 # Banker_Algorithm
-Số Process > Allocation > Max > Continue
-Test case 1:
+- Số Process > Allocation > Max > Continue
+- Test case 1:
 4
 1 0 0
 3 2 2
