@@ -2,15 +2,25 @@
 - Số Process > Allocation > Max > Continue
 - Test case 1:
 4
+
 1 0 0
+
 3 2 2
+
 2 1 1
+
 6 1 3
+
 2 1 1
+
 3 1 4
+
 0 0 2
+
 4 2 2
+
 4 1 2
+
 Request
 2
 4 0 1
