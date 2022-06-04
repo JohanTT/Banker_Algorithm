@@ -14,7 +14,7 @@
 Request
 2
 4 0 1
-Test case 2:
+- Test case 2:
 5
 3 0 1
 10 7 4
@@ -30,7 +30,7 @@ Test case 2:
 Request 
 2
 2 0 1
-Test case 3:
+- Test case 3:
 5
 0 1 2
 2 3 2
