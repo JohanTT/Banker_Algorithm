@@ -1,6 +1,7 @@
 # Banker_Algorithm
 - Số Process > Allocation > Max > Continue
 - Test case 1:
+
 4
 
 1 0 0
@@ -28,6 +29,7 @@ Request
 4 0 1
 
 - Test case 2:
+
 5
 
 3 0 1
